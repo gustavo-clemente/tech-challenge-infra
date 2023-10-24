@@ -46,10 +46,12 @@ module "vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/role/elb" = "1"
+    "kubernetes.io/cluster/tech_challenge_cluster": "shared" 
   }
 
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/cluster/tech_challenge_cluster": "shared" 
   }
 }
 
@@ -62,7 +64,7 @@ module "eks" {
 
   cluster_endpoint_public_access       = true
 
-  subnet_ids               = module.vpc.private_subnets
+  subnet_ids               = flatten([module.vpc.public_subnets, module.vpc.private_subnets])
   control_plane_subnet_ids = module.vpc.private_subnets
   vpc_id                   = module.vpc.vpc_id
 
@@ -97,6 +99,8 @@ module "eks" {
           namespace = "kube-system"
         }
       ]
+
+      subnet_ids = module.vpc.private_subnets
     }
   }
 }
