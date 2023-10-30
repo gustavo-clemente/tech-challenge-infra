@@ -17,3 +17,13 @@ output "cluster_certificate_authority_data" {
   description = "Dados da autoridade de certificação do cluster EKS"
   value       = module.eks.cluster_certificate_authority_data
 }
+
+output "fargate_profile" {
+  description = "OS profiles fargates criados no clustes EKS"
+  value = module.eks.fargate_profiles
+}
+
+output "oidc_provider_arn" {
+  description = "O Amazon Resource Name (ARN) do provedor de identidade OpenID Connect (OIDC) associado ao seu cluster EKS."
+  value = module.eks.oidc_provider_arn
+}
