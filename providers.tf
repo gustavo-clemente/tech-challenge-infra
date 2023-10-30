@@ -1,5 +1,5 @@
 provider "aws" {
-  profile = "terraform-user"
+  region  = "us-west-2"
 }
 
 provider "kubernetes" {
