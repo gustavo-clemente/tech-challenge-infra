@@ -15,3 +15,15 @@ variable "cluster_endpoint_public_access" {
   type        = bool
   default     = true
 }
+
+variable "lb_role_name" {
+  description = "O nome desejado para a função IAM que será criada para o Load Balancer do Amazon EKS."
+  type = string
+  default = "role_eks_lb"
+}
+
+variable "service_account_name"{
+  description = "Nome desejado para o service account responsável por instalar o load balancer controller"
+  type = string
+  default = "role_eks_lb"
+}
