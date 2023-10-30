@@ -25,5 +25,5 @@ variable "lb_role_name" {
 variable "service_account_name"{
   description = "Nome desejado para o service account responsável por instalar o load balancer controller"
   type = string
-  default = "role_eks_lb"
+  default = "aws-load-balancer-controller"
 }
