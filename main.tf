@@ -15,3 +15,7 @@ module "eks" {
 module "kms" {
   source = "./modules/kms"
 }
+
+module "aurora" {
+  source = "./modules/aurora"
+}
