@@ -1,0 +1,19 @@
+output "cluster_name" {
+  description = "Nome do cluster EKS criado"
+  value       = module.eks.cluster_name
+}
+
+output "cluster_version" {
+  description = "Versão do cluster EKS criado"
+  value       = module.eks.cluster_version
+}
+
+output "cluster_endpoint" {
+  description = "Endpoint do cluster EKS"
+  value       = module.eks.cluster_endpoint
+}
+
+output "cluster_certificate_authority_data" {
+  description = "Dados da autoridade de certificação do cluster EKS"
+  value       = module.eks.cluster_certificate_authority_data
+}
