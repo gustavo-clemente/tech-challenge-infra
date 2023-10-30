@@ -10,3 +10,8 @@ terraform {
 module "eks" {
   source = "./modules/eks"
 }
+
+
+module "kms" {
+  source = "./modules/kms"
+}
