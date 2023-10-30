@@ -1,7 +1,7 @@
 variable "name" {
   description = "Nome da VPC"
   type        = string
-  default     = "eks_cluster_vpc"
+  default     = "tech_challenge_vpc"
 }
 
 variable "cidr" {
