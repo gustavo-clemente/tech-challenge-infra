@@ -10,19 +10,3 @@ terraform {
 module "eks" {
   source = "./modules/eks"
 }
-
-
-
-# resource "kubernetes_namespace" "monitoring_tech_challenge" {
-#   metadata {
-#     annotations = {
-#       name = "monitoring-tech-challenge"
-#     }
-
-#     labels = {
-#       mylabel = "monitoring-tech-challenge"
-#     }
-
-#     name = "monitoring-tech-challenge"
-#   }
-# }
