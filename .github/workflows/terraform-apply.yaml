@@ -1,4 +1,4 @@
-name: 'Tech Challenge infra plan'
+name: 'Tech Challenge infra apply'
 on:
     push:
         branches:
