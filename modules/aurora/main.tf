@@ -9,6 +9,7 @@ module "aurora" {
   engine         = var.aurora_db_engine
   engine_version = var.aurora_db_engine_version
   vpc_id               = module.vpc.vpc_id
+  db_subnet_group_name = module.vpc.db_subnet_group_name
   storage_encrypted   = true
   apply_immediately   = true
   monitoring_interval = 10
