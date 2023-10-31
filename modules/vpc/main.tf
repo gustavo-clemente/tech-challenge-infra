@@ -11,4 +11,7 @@ module "vpc" {
 
   public_subnet_tags = var.public_subnet_tags
   private_subnet_tags = var.private_subnet_tags
+
+  create_database_subnet_group = true
+  database_subnets = var.database_subnets
 }

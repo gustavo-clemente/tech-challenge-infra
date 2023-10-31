@@ -16,10 +16,18 @@ variable "aurora_db_engine_version" {
   default     = "14.5"
 }
 
-variable "aurora_db_instance_class" {
-  description = "Classe de instância do cluster Aurora"
-  type        = string
-  default     = "db.r6g.large"
+variable "vpc_id" {
+  description = "ID da vpc associada"
+  type = string
+}
 
-  # Adicione outras variáveis necessárias para o módulo Aurora
+variable "db_subnet_group_name" {
+  description = "Nome do grupo das subnets"
+  type = string
+}
+
+variable "master_username" {
+  description = "Username do usuário master"
+  type = string
+  default = "root"
 }

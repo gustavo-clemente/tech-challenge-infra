@@ -1,7 +1,3 @@
-module "vpc" {
-  source = "../vpc"
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
@@ -9,9 +5,9 @@ module "eks" {
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
   cluster_endpoint_public_access = var.cluster_endpoint_public_access
-  subnet_ids = flatten([module.vpc.public_subnet, module.vpc.private_subnets])
-  control_plane_subnet_ids = module.vpc.private_subnets
-  vpc_id = module.vpc.vpc_id
+  subnet_ids = var.subnet_ids
+  control_plane_subnet_ids = var.control_plane_subnet_ids
+  vpc_id = var.vpc_id
   cluster_addons = {
     coredns = {
       configuration_values = jsonencode({
@@ -37,7 +33,7 @@ module "eks" {
         }
       ]
 
-      subnet_ids = module.vpc.private_subnets
+      subnet_ids = var.fargate_subnet_ids
     }
   }
 }
@@ -89,7 +85,7 @@ resource "helm_release" "alb-controller" {
 
   set {
     name  = "vpcId"
-    value = module.vpc.vpc_id
+    value = var.vpc_id
   }
 
   set {

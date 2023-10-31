@@ -7,8 +7,18 @@ terraform {
   }
 }
 
+
+module "vpc" {
+  source = "./modules/vpc"
+}
+
 module "eks" {
   source = "./modules/eks"
+
+  subnet_ids = flatten([module.vpc.public_subnet, module.vpc.private_subnets])
+  control_plane_subnet_ids = module.vpc.private_subnets
+  vpc_id = module.vpc.vpc_id
+  fargate_subnet_ids = module.vpc.private_subnets
 }
 
 
@@ -18,4 +28,6 @@ module "kms" {
 
 module "aurora" {
   source = "./modules/aurora"
+  vpc_id = module.vpc.vpc_id
+  db_subnet_group_name = module.vpc.database_subnet_group_name
 }

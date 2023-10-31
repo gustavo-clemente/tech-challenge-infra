@@ -28,6 +28,12 @@ variable "private_subnets" {
   default     = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 
+variable "database_subnets" {
+  description = "Bloco CIDR da VPC para subnets do banco de dados"
+  type        = list(string)
+  default     = ["10.0.5.0/24", "10.0.6.0/24"]
+}
+
 variable "enable_nat_gateway" {
   description = "Defina como true para habilitar o NAT gateway em subnets privadas"
   type        = bool
