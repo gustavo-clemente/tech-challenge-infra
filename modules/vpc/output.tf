@@ -12,3 +12,8 @@ output "private_subnets" {
   description = "IDs das subnets privadas criadas"
   value       = module.vpc.private_subnets
 }
+
+output "db_subnet_group_name " {
+  description = "Nome do grupo da subnet"
+  value = module.vpc.db_subnet_group_name 
+}
