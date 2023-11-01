@@ -14,4 +14,9 @@ module "vpc" {
 
   create_database_subnet_group = true
   database_subnets = var.database_subnets
+  create_database_subnet_route_table     = var.create_database_subnet_route_table
+  create_database_internet_gateway_route = var.create_database_internet_gateway_route
+
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 }

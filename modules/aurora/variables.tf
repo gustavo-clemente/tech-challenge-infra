@@ -13,7 +13,25 @@ variable "aurora_db_engine" {
 variable "aurora_db_engine_version" {
   description = "Versão do mecanismo do cluster Aurora"
   type        = string
-  default     = "14.5"
+  default     = "15.4"
+}
+
+variable "aurora_db_engine_mode" {
+  description = "Engine utilizada para o banco de dados"
+  type = string
+  default = "provisioned"
+}
+
+variable "serverless_min_capacity" {
+  description = "Capacidade miníma de instâncias provisionadas"
+  type = number
+  default = 2
+}
+
+variable "serverless_max_capacity" {
+  description = "Capacidade maxima de instâncias provisionadas"
+  type = number
+  default = 5
 }
 
 variable "vpc_id" {

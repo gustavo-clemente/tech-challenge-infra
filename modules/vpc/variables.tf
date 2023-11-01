@@ -40,6 +40,19 @@ variable "enable_nat_gateway" {
   default     = true
 }
 
+variable "create_database_subnet_route_table" {
+  description = "Indica se deve ser criada uma tabela de rotas para o banco de dados"
+  type = bool
+  default = false
+}
+
+variable "create_database_internet_gateway_route" {
+  description = "Indica se deve ser criado um gateway de acesso público para o banco de dados"
+  type = bool
+  default = false
+}
+
+
 variable "public_subnet_tags" {
   description = "Tags para subnets públicas"
   type        = map(string)
