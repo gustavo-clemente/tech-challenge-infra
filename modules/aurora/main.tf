@@ -2,6 +2,7 @@ module "aurora" {
   source  = "terraform-aws-modules/rds-aurora/aws"
 
   name           = var.aurora_db_name
+  database_name = var.aurora_db_name
   engine         = var.aurora_db_engine
   engine_version = var.aurora_db_engine_version
   engine_mode       = var.aurora_db_engine_mode
@@ -25,6 +26,12 @@ module "aurora" {
     }
     two = {
       publicly_accessible = true
+    }
+  }
+
+  security_group_rules = {
+    ex1_ingress = {
+      source_security_group_id = var.source_security_group_id
     }
   }
 }
