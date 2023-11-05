@@ -21,3 +21,8 @@ output "default_security_group_id" {
   description = "ID do security group padrão criado"
   value = module.vpc.default_security_group_id
 }
+
+output "private_subnets_cidr_blocks" {
+  description = "Blocos CIDR criados para as subnets privadas"
+  value = module.vpc.private_subnets_cidr_blocks
+}
