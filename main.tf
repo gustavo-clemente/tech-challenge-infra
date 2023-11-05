@@ -40,11 +40,11 @@ module "ebs" {
 
   mount_targets = {
     "us-west-2a" = {
-      subnet_id = module.vpc.private_subnets[0].id
+      subnet_id = module.vpc.private_subnets[0]
     }
 
     "us-west-2b" = {
-      subnet_id = module.vpc.private_subnets[1].id
+      subnet_id = module.vpc.private_subnets[1]
     }
   }
 
