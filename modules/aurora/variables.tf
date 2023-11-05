@@ -1,7 +1,7 @@
 variable "aurora_db_name" {
   description = "Nome do cluster Aurora"
   type        = string
-  default     = "tech-challenge"
+  default     = "techchallenge"
 }
 
 variable "aurora_db_engine" {
@@ -48,4 +48,9 @@ variable "master_username" {
   description = "Username do usuário master"
   type = string
   default = "root"
+}
+
+variable "source_security_group_id" {
+  description = "ID do security Group que poderá acessar o cluster do banco de dados"
+  type = string
 }

@@ -32,4 +32,21 @@ module "aurora" {
   source = "./modules/aurora"
   vpc_id = module.vpc.vpc_id
   db_subnet_group_name = module.vpc.database_subnet_group_name
+  source_security_group_id = module.vpc.default_security_group_id
+}
+
+module "ebs" {
+  source = "./modules/ebs"
+
+  mount_targets = {
+    "us-west-2a" = {
+      subnet_id = module.vpc.private_subnets[0].id
+    }
+
+    "us-west-2b" = {
+      subnet_id = module.vpc.private_subnets[1].id
+    }
+  }
+
+  security_group_vpc_id = module.vpc.id
 }

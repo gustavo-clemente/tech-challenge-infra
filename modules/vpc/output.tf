@@ -17,3 +17,7 @@ output "database_subnet_group_name" {
   description = "Nome do grupo da subnet"
   value = module.vpc.database_subnet_group_name 
 }
+output "default_security_group_id" {
+  description = "ID do security group padrão criado"
+  value = module.vpc.default_security_group_id
+}
