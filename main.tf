@@ -48,7 +48,7 @@ module "ebs" {
     }
   }
 
-  security_group_vpc_id = module.vpc.id
+  security_group_vpc_id = module.vpc.vpc_id
   security_group_rules = {
      vpc = {
       description = "NFS ingress from VPC private subnets"
