@@ -15,7 +15,7 @@ variable "encrypted" {
 
 variable "performance_mode" {
   description = "Modo de desempenho do sistema de arquivos EFS"
-  default     = "maxIO"
+  default     = "generalPurpose"
 }
 
 variable "throughput_mode" {
