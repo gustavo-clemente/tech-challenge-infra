@@ -40,13 +40,19 @@ module "ebs" {
 
   mount_targets = {
     "us-west-2a" = {
-      subnet_id = module.vpc.private_subnets[0]
+      subnet_id = module.vpc.private_subnets[0].id
     }
 
     "us-west-2b" = {
-      subnet_id = module.vpc.private_subnets[1]
+      subnet_id = module.vpc.private_subnets[1].id
     }
   }
 
-  security_group_vpc_id = module.vpc.vpc_id
+  security_group_vpc_id = module.vpc.id
+  security_group_rules = {
+     vpc = {
+      description = "NFS ingress from VPC private subnets"
+      cidr_blocks = module.vpc.private_subnets
+    }
+  }
 }

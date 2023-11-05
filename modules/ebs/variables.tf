@@ -32,3 +32,8 @@ variable "security_group_vpc_id" {
   description = "ID do grupo de segurança da VPC para o sistema de arquivos EFS"
   default     = ""
 }
+
+variable "security_group_rules"{
+  description = "Regras para acesso do grupo de segurança"
+  default = {}
+}
