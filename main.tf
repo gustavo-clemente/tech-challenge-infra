@@ -48,5 +48,5 @@ module "ebs" {
     }
   }
 
-  security_group_vpc_id = module.vpc.id
+  security_group_vpc_id = module.vpc.vpc_id
 }
