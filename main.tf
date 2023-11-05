@@ -7,17 +7,16 @@ terraform {
   }
 }
 
-
 module "vpc" {
   source = "./modules/vpc"
-  create_database_internet_gateway_route = true
-  create_database_subnet_route_table =  true
+  create_database_internet_gateway_route = false
+  create_database_subnet_route_table =  false
 }
 
 module "eks" {
   source = "./modules/eks"
 
-  subnet_ids = flatten([module.vpc.public_subnet, module.vpc.private_subnets])
+  subnet_ids = module.vpc.private_subnets
   control_plane_subnet_ids = module.vpc.private_subnets
   vpc_id = module.vpc.vpc_id
   fargate_subnet_ids = module.vpc.private_subnets
