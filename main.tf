@@ -52,7 +52,7 @@ module "ebs" {
   security_group_rules = {
      vpc = {
       description = "NFS ingress from VPC private subnets"
-      cidr_blocks = module.vpc.private_subnets
+      cidr_blocks = module.vpc.private_subnets_cidr_blocks
     }
   }
 }
