@@ -32,7 +32,7 @@ module "aurora" {
   source = "./modules/aurora"
   vpc_id = module.vpc.vpc_id
   db_subnet_group_name = module.vpc.database_subnet_group_name
-  source_security_group_id = module.vpc.default_security_group_id
+  source_security_group_id = module.eks.cluster_primary_security_group_id
 }
 
 module "ebs" {
