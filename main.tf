@@ -13,19 +13,19 @@ module "vpc" {
   create_database_subnet_route_table =  false
 }
 
-# module "eks" {
-#   source = "./modules/eks"
+module "eks" {
+  source = "./modules/eks"
 
-#   subnet_ids = module.vpc.private_subnets
-#   control_plane_subnet_ids = module.vpc.private_subnets
-#   vpc_id = module.vpc.vpc_id
-#   fargate_subnet_ids = module.vpc.private_subnets
-# }
+  subnet_ids = module.vpc.private_subnets
+  control_plane_subnet_ids = module.vpc.private_subnets
+  vpc_id = module.vpc.vpc_id
+  fargate_subnet_ids = module.vpc.private_subnets
+}
 
 
-# module "kms" {
-#   source = "./modules/kms"
-# }
+module "kms" {
+  source = "./modules/kms"
+}
 
 module "aurora" {
   source = "./modules/aurora"
@@ -34,27 +34,27 @@ module "aurora" {
   source_security_group_id = module.vpc.default_security_group_id
 }
 
-# module "efs" {
-#   source = "./modules/ebs"
+module "efs" {
+  source = "./modules/ebs"
 
-#   mount_targets = {
-#     "us-west-2a" = {
-#       subnet_id = module.vpc.private_subnets[0]
-#     }
+  mount_targets = {
+    "us-west-2a" = {
+      subnet_id = module.vpc.private_subnets[0]
+    }
 
-#     "us-west-2b" = {
-#       subnet_id = module.vpc.private_subnets[1]
-#     }
-#   }
+    "us-west-2b" = {
+      subnet_id = module.vpc.private_subnets[1]
+    }
+  }
 
-#   security_group_vpc_id = module.vpc.vpc_id
-#   security_group_rules = {
-#      vpc = {
-#       description = "NFS ingress from VPC private subnets"
-#       cidr_blocks = module.vpc.private_subnets_cidr_blocks
-#     }
-#   }
-# }
+  security_group_vpc_id = module.vpc.vpc_id
+  security_group_rules = {
+     vpc = {
+      description = "NFS ingress from VPC private subnets"
+      cidr_blocks = module.vpc.private_subnets_cidr_blocks
+    }
+  }
+}
 
 module "s3" {
   source = "./modules/s3"
