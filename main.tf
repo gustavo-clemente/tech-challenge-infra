@@ -34,7 +34,7 @@ module "aurora" {
   source_security_group_id = module.vpc.default_security_group_id
 }
 
-module "efs" {
+module "ebs" {
   source = "./modules/ebs"
 
   mount_targets = {
