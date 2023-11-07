@@ -1,39 +1,3 @@
-variable "aurora_db_name" {
-  description = "Nome do cluster Aurora"
-  type        = string
-  default     = "techchallenge"
-}
-
-variable "aurora_db_engine" {
-  description = "Tipo de mecanismo do cluster Aurora"
-  type        = string
-  default     = "aurora-postgresql"
-}
-
-variable "aurora_db_engine_version" {
-  description = "Versão do mecanismo do cluster Aurora"
-  type        = string
-  default     = "15.4"
-}
-
-variable "aurora_db_engine_mode" {
-  description = "Engine utilizada para o banco de dados"
-  type = string
-  default = "provisioned"
-}
-
-variable "serverless_min_capacity" {
-  description = "Capacidade miníma de instâncias provisionadas"
-  type = number
-  default = 2
-}
-
-variable "serverless_max_capacity" {
-  description = "Capacidade maxima de instâncias provisionadas"
-  type = number
-  default = 5
-}
-
 variable "vpc_id" {
   description = "ID da vpc associada"
   type = string
@@ -44,13 +8,21 @@ variable "db_subnet_group_name" {
   type = string
 }
 
-variable "master_username" {
-  description = "Username do usuário master"
-  type = string
-  default = "root"
-}
-
 variable "source_security_group_id" {
   description = "ID do security Group que poderá acessar o cluster do banco de dados"
   type = string
+}
+
+variable "rds_proxy_private_subnets_cidr_blocks" {
+  description = "Sub nets privadas que serão associadas ao proxy do rds"
+  type = list
+}
+
+variable "rds_proxy_database_subnets_cidr_blocks" {
+  description = "Sub nets de Database que serão associadas ao proxy do rds"
+  type = list
+}
+
+variable "rds_proxy_private_subnet_ids"{
+  description = "ID's das sub nets privadas para utilização no proxy"
 }

@@ -26,3 +26,8 @@ output "private_subnets_cidr_blocks" {
   description = "Blocos CIDR criados para as subnets privadas"
   value = module.vpc.private_subnets_cidr_blocks
 }
+
+output "database_subnets_cidr_blocks" {
+  description = "Blocos CIDR criados para as subnets de banco de dados"
+  value = module.vpc.database_subnets_cidr_blocks
+}

@@ -7,6 +7,11 @@ variable "vpc_subnet_ids" {
   type        = list(string)
 }
 
+variable "vpc_security_group_ids" {
+  description = "IDs dos grupos de segurança associados"
+  type = list(string)
+}
+
 variable "environment_variables" {
   description = "Variáveis de ambiente para a função Lambda"
   type        = map(string)
