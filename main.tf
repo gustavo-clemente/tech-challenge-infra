@@ -9,7 +9,7 @@ terraform {
 
 module "vpc" {
   source = "./modules/vpc"
-  create_database_internet_gateway_route = true
+  create_database_internet_gateway_route = false
   create_database_subnet_route_table =  false
 }
 
