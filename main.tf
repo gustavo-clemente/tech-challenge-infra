@@ -31,7 +31,10 @@ module "aurora" {
   source = "./modules/aurora"
   vpc_id = module.vpc.vpc_id
   db_subnet_group_name = module.vpc.database_subnet_group_name
-  source_security_group_id = module.eks.cluster_primary_security_group_id
+  source_security_group_id = module.vpc.default_security_group_id
+  rds_proxy_database_subnets_cidr_blocks = module.vpc.database_subnets_cidr_blocks
+  rds_proxy_private_subnets_cidr_blocks = module.vpc.private_subnets_cidr_blocks
+  rds_proxy_private_subnet_ids = module.vpc.private_subnets
 }
 
 module "ebs" {
@@ -54,4 +57,31 @@ module "ebs" {
       cidr_blocks = module.vpc.private_subnets_cidr_blocks
     }
   }
+}
+
+module "s3" {
+  source = "./modules/s3"
+}
+
+module "lambda" {
+  source = "./modules/lambda"
+
+  vpc_subnet_ids = module.vpc.private_subnets
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
+  s3_bucket = module.s3.s3_bucket_id
+
+  environment_variables = {
+    DB_USER     = tostring(module.aurora.cluster_master_username),
+    DB_HOST     = tostring(module.aurora.cluster_reader_endpoint),
+    DB_DATABASE = tostring(module.aurora.cluster_database_name),
+    DB_PASSWORD = tostring(module.aurora.cluster_master_user_secret[0].secret_arn),
+    DB_PORT = tostring(module.aurora.cluster_port)
+  }
+}
+
+module "api-gateway" {
+  source = "./modules/api-gateway"
+
+  auth_lambda_arn = module.lambda.lambda_function_arn
+  auth_lambda_name = module.lambda.lambda_function_name
 }

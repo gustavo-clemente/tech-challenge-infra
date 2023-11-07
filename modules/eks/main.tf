@@ -14,6 +14,7 @@ module "eks" {
         computeType = "Fargate"
       })
     }
+
   }
   fargate_profiles = {
     tech_challenge = {
@@ -36,6 +37,24 @@ module "eks" {
       subnet_ids = var.fargate_subnet_ids
     }
   }
+}
+
+module "eks_ack_addons" {
+  source = "aws-ia/eks-ack-addons/aws"
+
+  cluster_name      = module.eks.cluster_name
+  cluster_endpoint  = module.eks.cluster_endpoint
+  oidc_provider_arn = module.eks.oidc_provider_arn
+
+  enable_apigatewayv2      = true
+  enable_dynamodb          = false
+  enable_s3                = true
+  enable_rds               = true
+  enable_prometheusservice = false
+  enable_emrcontainers     = false
+  enable_sfn               = false
+  enable_eventbridge       = false
+
 }
 
 module "lb_role" {
